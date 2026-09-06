@@ -1,5 +1,13 @@
 {
   "dependencies": {
     "cors": "^2.8.6"
+  },
+  "scripts": {
+    "server": "npm start --prefix server",
+    "client": "npm run dev --prefix syncly",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.5"
   }
 }
