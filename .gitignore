@@ -1,0 +1,20 @@
+# Root dependencies
+node_modules/
+
+# Subfolder dependencies (Backend & Frontend)
+server/node_modules/
+syncly/node_modules/
+
+# Production builds
+syncly/build/
+syncly/dist/
+
+# Environment variables and secrets
+.env
+.env.local
+server/.env
+syncly/.env
+
+# Logs and OS files
+*.log
+.DS_Store

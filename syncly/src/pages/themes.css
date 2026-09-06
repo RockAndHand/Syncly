@@ -1,0 +1,226 @@
+/* ==========================================================================
+   THEME STYLESHEET REGISTRY
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. NEO TOKYO (Cyberpunk / High-Contrast Neon)
+   -------------------------------------------------------------------------- */
+body[data-theme="cyber-punk"] {
+  --bg-main: #030008;
+  --panel-bg: rgba(10, 2, 18, 0.7);
+  --glass-stroke: rgba(244, 63, 94, 0.15);
+
+  /* Holographic Retinal Glows */
+  --accent-glow: linear-gradient(135deg, #f43f5e 0%, #a855f7 50%, #06b6d4 100%);
+  --bubble-sent: linear-gradient(135deg, #e11d48 0%, #9333ea 100%);
+  --bubble-received: rgba(6, 182, 212, 0.05);
+
+  --text-main: #00f5ff; /* Radioactive Cyan text overrides */
+  --text-muted: #bc6ff1;
+}
+
+/* Theme Specific UI Polish for Neo Tokyo */
+body[data-theme="cyber-punk"] .chat-area {
+  background: radial-gradient(
+    circle at top right,
+    rgba(147, 51, 234, 0.08),
+    transparent
+  );
+}
+body[data-theme="cyber-punk"] .username {
+  color: #fff;
+  text-shadow: 0 0 8px rgba(244, 63, 94, 0.4);
+}
+body[data-theme="cyber-punk"] .message-bubble {
+  border: 1px solid rgba(244, 63, 94, 0.1);
+  box-shadow: 0 0 15px rgba(147, 51, 234, 0.1);
+}
+body[data-theme="cyber-punk"] .message-input button {
+  background: #f43f5e;
+  color: #fff;
+  box-shadow: 0 0 15px rgba(244, 63, 94, 0.6);
+}
+
+/* --------------------------------------------------------------------------
+   2. MINIMALIST (Monochrome / High-Fashion Grid)
+   -------------------------------------------------------------------------- */
+body[data-theme="monochrome"] {
+  --bg-main: #ffffff;
+  --panel-bg: #f8fafc;
+  --glass-stroke: #e2e8f0;
+
+  /* Absolute High Contrast Grayscale */
+  --accent-glow: linear-gradient(90deg, #0f172a 0%, #334155 100%);
+  --bubble-sent: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+  --bubble-received: #f1f5f9;
+
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+}
+
+/* Theme Specific UI Polish for Minimalist */
+body[data-theme="monochrome"] .sidebar,
+body[data-theme="monochrome"] .chat-area {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-radius: 0px; /* Ditch the round edges for sharp brutalism */
+}
+body[data-theme="monochrome"] .avatar {
+  border-radius: 0px;
+  background: #0f172a;
+}
+body[data-theme="monochrome"] .username {
+  color: #0f172a;
+}
+body[data-theme="monochrome"] .message-bubble {
+  border-radius: 0px !important; /* Strips bubble curvature away */
+  box-shadow: none;
+  border: 1px solid #e2e8f0;
+}
+body[data-theme="monochrome"] .message-input button {
+  background: #0f172a;
+  color: white;
+  border-radius: 0px;
+}
+
+/* --------------------------------------------------------------------------
+   3. LIQUID LIME (Glass Acid / Matrix Industrial)
+   -------------------------------------------------------------------------- */
+body[data-theme="glass-acid"] {
+  --bg-main: #050b07;
+  --panel-bg: rgba(12, 24, 16, 0.4);
+  --glass-stroke: rgba(132, 204, 22, 0.1);
+
+  /* Chartreuse Industrial Matrix Glow */
+  --accent-glow: linear-gradient(135deg, #84cc16 0%, #10b981 100%);
+  --bubble-sent: linear-gradient(135deg, #4d7c0f 0%, #065f46 100%);
+  --bubble-received: rgba(132, 204, 22, 0.03);
+
+  --text-main: #ccff00; /* Acid Volt Yellow-Green */
+  --text-muted: #4b6346;
+}
+
+/* Theme Specific UI Polish for Liquid Lime */
+body[data-theme="glass-acid"] .avatar {
+  background: #84cc16;
+  color: #050b07;
+}
+body[data-theme="glass-acid"] .username {
+  color: #f8fafc;
+}
+body[data-theme="glass-acid"] .active-conversation {
+  background: rgba(132, 204, 22, 0.08) !important;
+  border-color: rgba(132, 204, 22, 0.3) !important;
+}
+body[data-theme="glass-acid"] .message-input button {
+  background: #84cc16;
+  color: #050b07;
+}
+body[data-theme="glass-acid"] .dropdown-menu {
+  background: #0c1810;
+}
+
+/* --------------------------------------------------------------------------
+   4. Y2K NOSTALGIA (Glitch Pink / Bubblegum Cyber)
+   -------------------------------------------------------------------------- */
+body[data-theme="y2k-pink"] {
+  --bg-main: #18000a;
+  --panel-bg: rgba(255, 0, 128, 0.05);
+  --glass-stroke: rgba(255, 0, 128, 0.2);
+
+  /* Metallic Bubblegum Glint */
+  --accent-glow: linear-gradient(135deg, #ff007f 0%, #ff77ff 100%);
+  --bubble-sent: linear-gradient(135deg, #ff007f 0%, #a1005b 100%);
+  --bubble-received: rgba(255, 119, 255, 0.05);
+
+  --text-main: #ffb3d9;
+  --text-muted: #800040;
+}
+
+/* Theme Specific UI Polish for Y2K Pink */
+body[data-theme="y2k-pink"] .avatar {
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; /* Liquid asymmetrical bubble shape */
+}
+body[data-theme="y2k-pink"] .message-bubble {
+  border-radius: 24px !important;
+  box-shadow: 0 0 20px rgba(255, 0, 127, 0.15);
+}
+body[data-theme="y2k-pink"] .message-input button {
+  background: linear-gradient(135deg, #ff007f, #ff77ff);
+  color: white;
+}
+
+/* --------------------------------------------------------------------------
+   5. TOKYO DRIFT (Midnight Carbon / Racing Orange)
+   -------------------------------------------------------------------------- */
+body[data-theme="tokyo-drift"] {
+  --bg-main: #0a0a0f;
+  --panel-bg: rgba(18, 18, 24, 0.8);
+  --glass-stroke: rgba(255, 74, 0, 0.15);
+
+  /* Street Racing Burnout */
+  --accent-glow: linear-gradient(90deg, #ff4a00 0%, #ff0055 100%);
+  --bubble-sent: linear-gradient(135deg, #ff4a00 0%, #b33300 100%);
+  --bubble-received: #161622;
+
+  --text-main: #ff4a00; /* High-Vis Tech Orange */
+  --text-muted: #4e4e61;
+}
+
+/* Theme Specific UI Polish for Tokyo Drift */
+body[data-theme="tokyo-drift"] .sidebar,
+body[data-theme="tokyo-drift"] .chat-area {
+  border-radius: 12px; /* Aggressive, tighter corners */
+}
+body[data-theme="tokyo-drift"] .avatar {
+  border-radius: 8px; /* Square block profile style */
+  background: #ff4a00;
+  color: #0a0a0f;
+}
+body[data-theme="tokyo-drift"] .username {
+  color: #ffffff;
+}
+body[data-theme="tokyo-drift"] .active-conversation {
+  border-left: 4px solid #ff4a00 !important; /* Racing stripe on active tab */
+  background: rgba(255, 74, 0, 0.05) !important;
+}
+body[data-theme="tokyo-drift"] .message-input button {
+  background: #ff4a00;
+  color: white;
+}
+
+/* --------------------------------------------------------------------------
+   6. SOLARIS WAVE (Aesthetic Lofi / Warm Vapor)
+   -------------------------------------------------------------------------- */
+body[data-theme="solaris-wave"] {
+  --bg-main: #1a1525;
+  --panel-bg: rgba(43, 34, 61, 0.4);
+  --glass-stroke: rgba(254, 180, 123, 0.1);
+
+  /* Lofi Sunset Horizon */
+  --accent-glow: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
+  --bubble-sent: linear-gradient(135deg, #ff7e5f 0%, #ea580c 100%);
+  --bubble-received: rgba(254, 180, 123, 0.04);
+
+  --text-main: #ffe3d1;
+  --text-muted: #78648c;
+}
+
+/* Theme Specific UI Polish for Solaris Wave */
+body[data-theme="solaris-wave"] .chat-area {
+  background: linear-gradient(to bottom, rgba(255, 126, 95, 0.03), transparent);
+}
+body[data-theme="solaris-wave"] .username {
+  color: #feb47b;
+}
+body[data-theme="solaris-wave"] .avatar {
+  background: var(--accent-glow);
+  color: #1a1525;
+}
+body[data-theme="solaris-wave"] .message-bubble {
+  border-radius: 30px !important; /* Relaxed pill curves */
+}
+body[data-theme="solaris-wave"] .message-input button {
+  background: var(--accent-glow);
+  color: #1a1525;
+}
