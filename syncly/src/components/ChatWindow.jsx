@@ -23,16 +23,18 @@ function ChatWindow({
   }, [messages, typingUser]);
 
   // SOLID LOGIC: Efficiently find the last sent message ID without copying/reversing the array
-  const lastSentMessageId = useMemo(() => {
-    for (let i = messages.length - 1; i >= 0; i--) {
-      const msg = messages[i];
-      const senderId = msg.sender?.id || msg.sender?._id || msg.sender;
-      if (senderId === currentUserId) {
-        return msg.id || msg._id;
-      }
-    }
-    return null;
-  }, [messages, currentUserId]);
+  const latestMessage = messages[messages.length - 1];
+  
+  const latestMessageId =
+  latestMessage?.id || latestMessage?._id;
+  
+  const latestSenderId =
+  latestMessage?.sender?.id ||
+  latestMessage?.sender?._id ||
+  latestMessage?.sender;
+
+  const showStatusForLatestMessage =
+  latestSenderId === currentUserId;
 
   const onInputChange = (e) => {
     const val = e.target.value;
@@ -51,7 +53,7 @@ function ChatWindow({
           const msgId = message.id || message._id;
           const senderId = message.sender?.id || message.sender?._id || message.sender;
           const isSentByMe = senderId === currentUserId;
-          const isLastSent = msgId === lastSentMessageId;
+          const isLatestMessage = msgId === latestMessageId;
 
           return (
             <div
@@ -62,11 +64,11 @@ function ChatWindow({
                 <span className="message-text">{message.content}</span>
                 
                 {/* FIXED: Status indicator is now housed safely inside the bubble */}
-                {isLastSent && (
+                {isLatestMessage && showStatusForLatestMessage && (
                   <div className="message-status">
                     {message.seen ? "Seen ✓✓" : "Sent ✓"}
-                  </div>
-                )}
+                    </div>
+                  )}
               </div>
             </div>
           );
