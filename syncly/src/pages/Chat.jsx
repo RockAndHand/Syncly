@@ -38,31 +38,31 @@ function Chat() {
 
   // FIXED: Handles duplicates by checking message sender id
   // FIXED: Removing the stale closure by tracking currentUserId cleanly
-  useEffect(() => {
-    if (!currentUserId) return;
+  // useEffect(() => {
+  //   if (!currentUserId) return;
 
-    socket.on("newMessage", (message) => {
-      const senderId =
-        message.sender?.id ||
-        message.sender?._id ||
-        (typeof message.sender === "string" ? message.sender : null);
+  //   socket.on("newMessage", (message) => {
+  //     const senderId =
+  //       message.sender?.id ||
+  //       message.sender?._id ||
+  //       (typeof message.sender === "string" ? message.sender : null);
 
-      if (String(senderId) === String(currentUserId)) return;
+  //     if (String(senderId) === String(currentUserId)) return;
 
-      setSelectedConversation((currentSelected) => {
-        if (message.conversationId === currentSelected) {
-          setMessages((prev) => {
-            // This one line kills the duplicate
-            if (prev.some((m) => m.id === message.id)) return prev;
-            return [...prev, message];
-          });
-        }
-        return currentSelected;
-      });
-    });
+  //     setSelectedConversation((currentSelected) => {
+  //       if (message.conversationId === currentSelected) {
+  //         setMessages((prev) => {
+  //           // This one line kills the duplicate
+  //           if (prev.some((m) => m.id === message.id)) return prev;
+  //           return [...prev, message];
+  //         });
+  //       }
+  //       return currentSelected;
+  //     });
+  //   });
 
-    return () => socket.off("newMessage"); // This removes ALL listeners, not just this one
-  }, [currentUserId]); // Dynamic tracking handles profile loading delays seamlessly
+  //   return () => socket.off("newMessage"); // This removes ALL listeners, not just this one
+  // }, [currentUserId]); // Dynamic tracking handles profile loading delays seamlessly
   useEffect(() => {
     fetchCurrentUser();
     fetchConversations();
@@ -108,6 +108,7 @@ function Chat() {
       socket.off("userStoppedTyping");
     };
   }, [selectedConversation, currentUser]);
+
   useEffect(() => {
     if (!currentUserId) return;
 
@@ -121,6 +122,10 @@ function Chat() {
 
       setSelectedConversation((currentSelected) => {
         if (message.conversationId === currentSelected) {
+          socket.emit("messagesSeen",{
+            conversationId: message.conversationId,
+          })
+
           setMessages((prev) => {
             if (prev.some((m) => m.id === message.id)) return prev;
             return [...prev, message];
